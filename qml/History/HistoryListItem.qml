@@ -1,10 +1,11 @@
 import QtQuick 2.3
+import QtQuick.Layouts 1.1
 
 import "../js/history.js" as Script
 
 Image {
     id: historyListItem
-    width: U.px(768)
+    width: parent.width
     height: U.px(180)
     fillMode: Image.Tile
     source: "../Assets/paper.png"
@@ -16,9 +17,9 @@ Image {
 
     Behavior on x {NumberAnimation{duration:300}}
 
-    Row{
+    RowLayout{
         anchors.fill: parent
-        anchors.margins: U.px(20)
+        anchors.margins: U.px(60)
         spacing: U.px(60)
         Text{
             id: datePart
@@ -41,6 +42,7 @@ Image {
             horizontalAlignment: Text.AlignRight
             verticalAlignment: Text.AlignVCenter
             anchors.verticalCenter: parent.verticalCenter
+            Layout.fillWidth: true
         }
     }
 
