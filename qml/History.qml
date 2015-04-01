@@ -4,7 +4,7 @@ import "Common"
 import "History"
 
 import "js/date_formater.js" as DateFormat
-import "js/history.js" as Script
+//import "js/history.js" as Script
 
 Page {
     id: history
@@ -46,7 +46,7 @@ Page {
             field1: DateFormat.getDateAsLocalsString(section)
         }
 
-        Component.onCompleted: Script.loadHistoryFromDatabase()
+//        Component.onCompleted: Script.loadHistoryFromDatabase()
     }
 
     HistoryViewShadows{
@@ -64,7 +64,7 @@ Page {
     SequentialAnimation{
         id: listCearing
         NumberAnimation { target: historyList; property: "opacity"; to:0}
-        ScriptAction{script: Script.clearHistory()}
+        ScriptAction{script: database.clear();}
         PropertyAction { target: historyList; property: "opacity"; value: 1 }
     }
 

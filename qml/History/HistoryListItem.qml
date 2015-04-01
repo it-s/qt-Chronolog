@@ -3,12 +3,11 @@ import QtQuick.Layouts 1.1
 
 import "../js/history.js" as Script
 
-Image {
+Rectangle {
     id: historyListItem
     width: parent.width
     height: U.px(180)
-    fillMode: Image.Tile
-    source: "../Assets/paper.png"
+    color: "#eee"
 
     opacity: 1-(x/width)
 
@@ -48,8 +47,8 @@ Image {
 
     Rectangle{
         width: parent.width
-        height: U.px(2)
-        color: "#10000000"
+        height: 1
+        color: "#ccc"
         anchors.bottom: parent.bottom
     }
 

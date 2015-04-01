@@ -24,7 +24,8 @@ DataBase::DataBase(QString organizationName, QString applicationName, QObject *p
     }else{
         qDebug("Error opening database.");
     }
-    mChanged = true;
+    mQuery = "select * from history order by id desc";
+    refresh();
 }
 
 DataBase::~DataBase()
