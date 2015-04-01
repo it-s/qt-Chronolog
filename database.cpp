@@ -24,6 +24,7 @@ DataBase::DataBase(QString organizationName, QString applicationName, QObject *p
     }else{
         qDebug("Error opening database.");
     }
+    mChanged = true;
 }
 
 DataBase::~DataBase()
@@ -53,6 +54,7 @@ QVariant DataBase::data(const QModelIndex &index, int role) const
 
 void DataBase::setModelQuery(const QString &q)
 {
+    if (mQuery == q) return;
     qDebug("Setting new query: " + q.toLatin1());
     mQuery = q;
     refresh();
@@ -60,6 +62,8 @@ void DataBase::setModelQuery(const QString &q)
 
 void DataBase::refresh()
 {
+    if (!mChanged) return;
+    mChanged = false;
     qDebug("Refresh data store");
     beginRemoveRows(QModelIndex(),0,mDatas.count());
     mDatas.clear();
@@ -124,8 +128,8 @@ bool DataBase::queryDB(const QString &q)
     qDebug("Running query: " + q.toLatin1());
     QSqlQuery query;
     if (query.exec(q)){
-        qDebug("Query executed successfully");
-        return true;
+        qDebug("Query executed successfully");        
+        return mChanged = true;
     }else{
         qDebug("Query executed failed");
         qDebug() << mDb.lastError();
