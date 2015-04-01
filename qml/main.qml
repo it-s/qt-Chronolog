@@ -7,8 +7,8 @@ import QtQuick.LocalStorage 2.0
 ApplicationWindow {
     id: app
     color: "#000000"
-    width: 540
-    height: 960
+    width: 768
+    height: 1280
 
     visible: true
 

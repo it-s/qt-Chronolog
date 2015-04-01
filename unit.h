@@ -7,6 +7,7 @@ class Unit : public QObject
     Q_OBJECT
 
 public:
+    explicit Unit(QObject *parent = 0);
     explicit Unit(const QSize& screenSize, QObject *parent = 0);
     explicit Unit(const QSize& screenSize, const QSize &designedForSize, QObject *parent = 0);
     explicit Unit(const QSize& screenSize, const QSize &designedForSize, const qreal ratioMin, QObject *parent = 0);
@@ -34,7 +35,7 @@ signals:
     qreal mRatioMin;
     qreal mRatioMax;
 
-    void init(const QSize& screenSize, const QSize &designedForSize = QSize(640,480), const qreal ratioMin = 0.0f, const qreal ratioMax = 99.0f, const bool roundUp = false);
+    void init(const QSize& screenSize = QSize(1,1), const QSize &designedForSize = QSize(1,1), const qreal ratioMin = 0.0f, const qreal ratioMax = 99.0f, const bool roundUp = false);
 
 };
 

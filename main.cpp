@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 #if (defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WINPHONE))
     engine.rootContext()->setContextProperty("U", new Unit(qApp->screens().first()->size(), QSize(768,1280)));
 #else
-    engine.rootContext()->setContextProperty("U", new Unit(QSize(540,960), QSize(768,1280)));
+    engine.rootContext()->setContextProperty("U", new Unit());
 #endif
     engine.load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     return app.exec();

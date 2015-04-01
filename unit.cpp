@@ -1,6 +1,12 @@
 #include "unit.h"
 #include <QtMath>
 #include <QDebug>
+Unit::Unit(QObject *parent) :
+    QObject(parent)
+{
+    init();
+}
+
 Unit::Unit(const QSize& screenSize, QObject *parent) :
     QObject(parent)
 {
