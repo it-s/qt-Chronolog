@@ -75,5 +75,49 @@
         <file>qml/Assets/buttonClick.wav</file>
         <file>qml/Assets/buttonPress.wav</file>
         <file>qml/Assets/snapshotSound.wav</file>
+        <file>qml/Assets/0@2x.png</file>
+        <file>qml/Assets/1@2x.png</file>
+        <file>qml/Assets/2@2x.png</file>
+        <file>qml/Assets/3@2x.png</file>
+        <file>qml/Assets/4@2x.png</file>
+        <file>qml/Assets/5@2x.png</file>
+        <file>qml/Assets/6@2x.png</file>
+        <file>qml/Assets/7@2x.png</file>
+        <file>qml/Assets/8@2x.png</file>
+        <file>qml/Assets/9@2x.png</file>
+        <file>qml/Assets/a@2x.png</file>
+        <file>qml/Assets/add.icon@2x.png</file>
+        <file>qml/Assets/back.icon@2x.png</file>
+        <file>qml/Assets/bg@2x.png</file>
+        <file>qml/Assets/buttonLight@2x.png</file>
+        <file>qml/Assets/clear.icon@2x.png</file>
+        <file>qml/Assets/clockFace@2x.png</file>
+        <file>qml/Assets/clockFaceDark@2x.png</file>
+        <file>qml/Assets/compas@2x.png</file>
+        <file>qml/Assets/compasDark@2x.png</file>
+        <file>qml/Assets/dark@2x.png</file>
+        <file>qml/Assets/help.icon@2x.png</file>
+        <file>qml/Assets/help01@2x.jpg</file>
+        <file>qml/Assets/help02@2x.jpg</file>
+        <file>qml/Assets/helpb.icon@2x.png</file>
+        <file>qml/Assets/indHor@2x.png</file>
+        <file>qml/Assets/indMin@2x.png</file>
+        <file>qml/Assets/indSec@2x.png</file>
+        <file>qml/Assets/magniArrow@2x.png</file>
+        <file>qml/Assets/magniGlass@2x.png</file>
+        <file>qml/Assets/menu.icon@2x.png</file>
+        <file>qml/Assets/numerals@2x.png</file>
+        <file>qml/Assets/reset.icon@2x.png</file>
+        <file>qml/Assets/selHor@2x.png</file>
+        <file>qml/Assets/selMin@2x.png</file>
+        <file>qml/Assets/selSec@2x.png</file>
+        <file>qml/Assets/shadow.bottom@2x.png</file>
+        <file>qml/Assets/shadow.top@2x.png</file>
+        <file>qml/Assets/snapshot@2x.png</file>
+        <file>qml/Assets/toggleButton@2x.png</file>
+        <file>qml/Assets/toggleButtonPause@2x.png</file>
+        <file>qml/Assets/toggleButtonRun@2x.png</file>
+        <file>qml/Assets/toggleButtonStop@2x.png</file>
+        <file>qml/Assets/toolbar@2x.png</file>
     </qresource>
 </RCC>
