@@ -38,6 +38,7 @@ private:
 QSqlDatabase mDb;
 QVariantList mDatas;
 QString mQuery;
+bool mChanged;
 
 bool queryDB(const QString &q);
 
