@@ -8,6 +8,7 @@ History::History(QObject *parent) :
     QAbstractListModel(parent)
 {
     mDataRoles[ID] = "ID";
+    mDataRoles[SectionRole] = "section";
     mDataRoles[DateRole] = "date";
     mDataRoles[ResultRole] = "result";
     mDataRoles[TagsRole] = "tags";
@@ -54,6 +55,7 @@ int History::rowCount(const QModelIndex &parent) const
 QVariant History::data(const QModelIndex &index, int role) const
 {
     QVariant result;
+    QString date;
 
      //qDebug() << Q_FUNC_INFO << index << role;
 
@@ -64,6 +66,11 @@ QVariant History::data(const QModelIndex &index, int role) const
              switch(role) {
              case ID:
                  result = item.ID;
+                 break;
+             case SectionRole:
+                 date = item.date;
+                 date.replace(7,6,"000000");
+                 result = date.replace(7,6,"000000");
                  break;
              case ResultRole:
                  result = item.result;
@@ -156,9 +163,9 @@ void HistoryFilter::setFilterDate(QString date)
 
 bool HistoryFilter::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-//    QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
-//    QString date = sourceModel()->data(index, History::DateRole).toString();
-//    QString tags = sourceModel()->data(index, History::TagsRole).toString();
+    QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
+    QString date = sourceModel()->data(index, History::DateRole).toString();
+    QString tags = sourceModel()->data(index, History::TagsRole).toString();
 
-    return true;//(date.contains(mDate))&&(tags.contains(filterRegExp()));
+    return (date.contains(mDate))&&(tags.contains(filterRegExp()));
 }

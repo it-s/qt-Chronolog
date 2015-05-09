@@ -38,6 +38,7 @@ class History : public QAbstractListModel
 public:
     enum Roles {
         ID = Qt::UserRole + 1,
+        SectionRole,
         DateRole,
         ResultRole,
         TagsRole

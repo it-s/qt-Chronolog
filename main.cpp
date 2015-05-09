@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     app.setApplicationName("Chronolog");
 
 //    DataBase database(app.organizationName(), app.applicationName());
-    History history;
+    HistoryFilter history;
 
     QQmlApplicationEngine engine;
 //    engine.rootContext()->setContextProperty("database", &database);

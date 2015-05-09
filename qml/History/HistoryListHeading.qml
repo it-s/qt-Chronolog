@@ -1,4 +1,5 @@
 import QtQuick 2.3
+import "../js/date_formater.js" as DateFormat
 
 Rectangle {
     width: parent.width
@@ -14,6 +15,6 @@ Rectangle {
         font.family: "sans"
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
-        text: section
+        text: DateFormat.getDateAsLocalsString(section)
     }
 }

@@ -40,8 +40,8 @@ Page {
         model: history
         delegate: HistoryListItem {}
 
-        section.property: "date"
-        section.criteria: ViewSection.CurrentLabelAtStart
+        section.property: "section"
+        section.labelPositioning: ViewSection.InlineLabels | ViewSection.CurrentLabelAtStart
         section.delegate: HistoryListHeading{}
 
     }
