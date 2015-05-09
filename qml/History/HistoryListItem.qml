@@ -2,6 +2,7 @@ import QtQuick 2.3
 import QtQuick.Layouts 1.1
 
 import "../js/history.js" as Script
+import "../js/date_formater.js" as DateFormat
 
 Rectangle {
     id: historyListItem
@@ -10,9 +11,6 @@ Rectangle {
     color: "#eee"
 
     opacity: 1-(x/width)
-
-    property alias field1: datePart.text
-    property alias field2: resultPart.text
 
     Behavior on x {NumberAnimation{duration:300}}
 
@@ -31,6 +29,7 @@ Rectangle {
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
             anchors.verticalCenter: parent.verticalCenter
+            text: DateFormat.getDateAsStackedCalendar(date)
         }
         Text{
             id: resultPart
@@ -42,6 +41,7 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             anchors.verticalCenter: parent.verticalCenter
             Layout.fillWidth: true
+            text: DateFormat.formatTimeStringAsDigitalNotation(result)
         }
     }
 
@@ -69,7 +69,7 @@ Rectangle {
     SequentialAnimation{
         id: die
         NumberAnimation { target: historyListItem; property: "height"; to: 0; duration: 250;}
-        ScriptAction {script:database.removeRecord(index);}
+        ScriptAction {script: history.remove(ID);}
     }
 
 

@@ -1,12 +1,10 @@
 import QtQuick 2.3
+import "../js/date_formater.js" as DateFormat
 
 Rectangle {
     width: parent.width
     height: U.px(80)
     color: "#cfcfcf"
-
-    property string sectionName: ""
-    property alias field1: datePart.text
 
     Text{
         id: datePart
@@ -17,5 +15,6 @@ Rectangle {
         font.family: "sans"
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
+        text: DateFormat.getDateAsLocalsString(section)
     }
 }

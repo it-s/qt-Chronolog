@@ -37,7 +37,12 @@ Page {
         if(save!==undefined){
             clockFaceTimer.showVisualSnapshot();
             toolbar.text = "<i>Last Snapshot<br>"+DateFormat.formatTimeStringAsDigitalNotation(d)+"</i>";
-            database.appendRecord(d);
+            var data = {
+                date: new Date().getTime(),
+                result: d,
+                tags: ""
+            }
+            history.add(data);
         }
     }
 

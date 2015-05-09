@@ -2,6 +2,8 @@ import QtQuick 2.3
 
 Image {
     id: page
+    width: 320
+    height: 480
 
     property int pageTransitionDuration: 300
     default property alias _contentChildren: pageContent.data

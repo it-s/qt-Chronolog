@@ -7,7 +7,7 @@ import "js/date_formater.js" as DateFormat
 //import "js/history.js" as Script
 
 Page {
-    id: history
+    id: historyView
     fillMode: Image.Tile
 
     source: "Assets/vichy.png"
@@ -19,7 +19,7 @@ Page {
     Text{
         color: "#888"
         smooth: true
-        font.pixelSize: U.px(32)
+        font.pixelSize: U.px(32) || 32
         font.family: "sans"
         text: "History is empty"
         anchors.top: parent.top
@@ -31,22 +31,19 @@ Page {
 
     ListView {
         id: historyList
+        anchors.bottom: toolbar.top
+        anchors.right: parent.right
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.bottomMargin: -70
         clip: true
-        anchors.bottomMargin: U.px(140)
-        anchors.fill: parent
-        model: database
-        delegate: HistoryListItem{
-            field1: DateFormat.getDateAsStackedCalendar(display.date,true)
-            field2: DateFormat.formatTimeStringAsDigitalNotation(display.result)
-        }
+        model: history
+        delegate: HistoryListItem {}
 
-        section.property: "display.date"
-//        section.criteria: ViewSection.FullString
-        section.delegate: HistoryListHeading{
-            field1: DateFormat.getDateAsLocalsString(section)
-        }
+        section.property: "section"
+        section.labelPositioning: ViewSection.InlineLabels | ViewSection.CurrentLabelAtStart
+        section.delegate: HistoryListHeading{}
 
-//        Component.onCompleted: Script.loadHistoryFromDatabase()
     }
 
     HistoryViewShadows{
@@ -60,13 +57,6 @@ Page {
         id: toolbar
         onResetPressed: clearDialog.open()
    }
-
-    SequentialAnimation{
-        id: listCearing
-        NumberAnimation { target: historyList; property: "opacity"; to:0}
-        ScriptAction{script: database.clear();}
-        PropertyAction { target: historyList; property: "opacity"; value: 1 }
-    }
 
     Button{
         anchors.left: parent.left
@@ -87,7 +77,7 @@ Page {
         title: qsTr("Chronolog")
         text: qsTr("Do you want to clear your history, erasing all your saved records?")
         standardButtons: StandardButton.Cancel | StandardButton.Ok
-        onAccepted: history.clarHistory()
+        onAccepted: history.clear()
     }
 
 }

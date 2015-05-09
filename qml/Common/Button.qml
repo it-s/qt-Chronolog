@@ -1,7 +1,7 @@
 import QtQuick 2.3
 
 MouseArea {
-    width: U.px(140)
+    width: U.px(140) || 140
     height: width
 
     property string type: "menu"
