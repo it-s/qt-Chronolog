@@ -11,8 +11,10 @@ Rectangle {
 
     opacity: 1-(x/width)
 
-    property alias field1: datePart.text
-    property alias field2: resultPart.text
+    property int itemID
+    property alias date: datePart.text
+    property alias result: resultPart.text
+    property string tags
 
     Behavior on x {NumberAnimation{duration:300}}
 
@@ -69,7 +71,7 @@ Rectangle {
     SequentialAnimation{
         id: die
         NumberAnimation { target: historyListItem; property: "height"; to: 0; duration: 250;}
-        ScriptAction {script:database.removeRecord(index);}
+        ScriptAction {script: history.remove(historyListItem.itemID);}
     }
 
 

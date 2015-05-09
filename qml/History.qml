@@ -34,19 +34,19 @@ Page {
         clip: true
         anchors.bottomMargin: U.px(140)
         anchors.fill: parent
-        model: database
-        delegate: HistoryListItem{
-            field1: DateFormat.getDateAsStackedCalendar(display.date,true)
-            field2: DateFormat.formatTimeStringAsDigitalNotation(display.result)
+        model: history
+        delegate: HistoryListItem {
+            itemID: id
+            date: DateFormat.getDateAsStackedCalendar(date,true)
+            result: DateFormat.formatTimeStringAsDigitalNotation(result)
+            tags: tags
         }
 
-        section.property: "display.date"
-//        section.criteria: ViewSection.FullString
+        section.property: "date"
         section.delegate: HistoryListHeading{
             field1: DateFormat.getDateAsLocalsString(section)
         }
 
-//        Component.onCompleted: Script.loadHistoryFromDatabase()
     }
 
     HistoryViewShadows{
@@ -60,13 +60,6 @@ Page {
         id: toolbar
         onResetPressed: clearDialog.open()
    }
-
-    SequentialAnimation{
-        id: listCearing
-        NumberAnimation { target: historyList; property: "opacity"; to:0}
-        ScriptAction{script: database.clear();}
-        PropertyAction { target: historyList; property: "opacity"; value: 1 }
-    }
 
     Button{
         anchors.left: parent.left
@@ -87,7 +80,7 @@ Page {
         title: qsTr("Chronolog")
         text: qsTr("Do you want to clear your history, erasing all your saved records?")
         standardButtons: StandardButton.Cancel | StandardButton.Ok
-        onAccepted: history.clarHistory()
+        onAccepted: history.clar()
     }
 
 }

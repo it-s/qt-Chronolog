@@ -1,7 +1,7 @@
 import QtQuick 2.3
 import QtQuick.Controls 1.2
 import Qt.labs.settings 1.0
-import QtQuick.LocalStorage 2.0
+//import QtQuick.LocalStorage 2.0
 //import org.labsquare 1.0
 
 ApplicationWindow {

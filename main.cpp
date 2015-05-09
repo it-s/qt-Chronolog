@@ -3,7 +3,8 @@
 #include <QQmlContext>
 
 #include "unit.h"
-#include "database.h"
+#include "history.h"
+//#include "database.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,10 +13,12 @@ int main(int argc, char *argv[])
     app.setOrganizationDomain("Likalo.com");
     app.setApplicationName("Chronolog");
 
-    DataBase database(app.organizationName(), app.applicationName());
+//    DataBase database(app.organizationName(), app.applicationName());
+    HistoryFilter history;
 
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("database", &database);
+//    engine.rootContext()->setContextProperty("database", &database);
+    engine.rootContext()->setContextProperty("history", &history);
 #if (defined(Q_OS_ANDROID) || defined(Q_OS_IOS) || defined(Q_OS_WINPHONE))
     engine.rootContext()->setContextProperty("U", new Unit(qApp->screens().first()->size(), QSize(768,1280)));
 #else

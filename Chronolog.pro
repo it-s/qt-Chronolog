@@ -4,7 +4,8 @@ QT += sql qml quick multimedia
 
 SOURCES += main.cpp \
     database.cpp \
-    unit.cpp
+    unit.cpp \
+    history.cpp
 
 RESOURCES += qml.qrc
 
@@ -16,7 +17,8 @@ include(deployment.pri)
 
 HEADERS += \
     database.h \
-    unit.h
+    unit.h \
+    history.h
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
