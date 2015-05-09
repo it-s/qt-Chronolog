@@ -11,12 +11,12 @@
 #include <QByteArray>
 
 struct HistoryItem {
-    int id;
+    int ID;
     QString result, date,tags;
     operator QVariantMap() const
     {
         QVariantMap m;
-        m["id"]=this->id;
+        m["ID"]=this->ID;
         m["date"]=this->date;
         m["result"]= this->result;
         m["tags"]=this->tags;
@@ -24,7 +24,7 @@ struct HistoryItem {
     }
     HistoryItem& operator=(const QVariantMap& v)
     {
-        if (v.contains("id")) this->id = v.value("id").toInt();
+        if (v.contains("ID")) this->ID = v.value("ID").toInt();
         if (v.contains("result")) this->result = v.value("result").toString();
         if (v.contains("date")) this->date = v.value("date").toString();
         if (v.contains("tags")) this->tags = v.value("tags").toString();
@@ -54,10 +54,10 @@ protected:
     QHash<int, QByteArray> roleNames() const {return mDataRoles;}
 
 public slots:
-    QVariantMap get(const int id);
-    void set(const int id, const QVariantMap& v);
+    QVariantMap get(const int ID);
+    void set(const int ID, const QVariantMap& v);
     void add(const QVariantMap& v);
-    void remove(const int id);
+    void remove(const int ID);
     void clear();
 
 private:
@@ -66,7 +66,7 @@ private:
     QHash<int, QByteArray> mDataRoles;
     int mNextID;
 
-    int findElementIndexById(const int id) const;
+    int findElementIndexByID(const int ID) const;
 };
 
 
@@ -83,10 +83,10 @@ public slots:
     void setFilterDate(QString date);
     QString filterDate(){ return mDate; }
 
-    QVariantMap get(const int id){ return history.get(id); }
-    void set(const int id, const QVariantMap& v){ history.set(id, v); }
+    QVariantMap get(const int ID){ return history.get(ID); }
+    void set(const int ID, const QVariantMap& v){ history.set(ID, v); }
     void add(const QVariantMap& v){ history.add(v); }
-    void remove(const int id){ history.remove(id); }
+    void remove(const int ID){ history.remove(ID); }
     void clear(){ history.clear(); }
 
 protected:

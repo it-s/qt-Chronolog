@@ -7,7 +7,7 @@
 History::History(QObject *parent) :
     QAbstractListModel(parent)
 {
-    mDataRoles[ID] = "id";
+    mDataRoles[ID] = "ID";
     mDataRoles[DateRole] = "date";
     mDataRoles[ResultRole] = "result";
     mDataRoles[TagsRole] = "tags";
@@ -18,8 +18,8 @@ History::History(QObject *parent) :
     for (int i = 0; i < size; ++i) {
         mSettings.setArrayIndex(i);
         HistoryItem item;
-        item.id = mSettings.value("id").toInt();
-        item.result = mSettings.value("result").toLongLong();
+        item.ID = mSettings.value("ID").toInt();
+        item.result = mSettings.value("result").toString();
         item.date = mSettings.value("date").toString();
         item.tags = mSettings.value("tags").toString();
         mData.append(item);
@@ -35,7 +35,7 @@ void History::synch()
     mSettings.beginWriteArray("history", mData.count());
     for (int i = 0; i < mData.size(); ++i) {
         mSettings.setArrayIndex(i);
-        mSettings.setValue("id", mData.at(i).id);
+        mSettings.setValue("ID", mData.at(i).ID);
         mSettings.setValue("result", mData.at(i).result);
         mSettings.setValue("date", mData.at(i).date);
         mSettings.setValue("tags", mData.at(i).tags);
@@ -52,7 +52,8 @@ int History::rowCount(const QModelIndex &parent) const
 }
 
 QVariant History::data(const QModelIndex &index, int role) const
-{    QVariant result;
+{
+    QVariant result;
 
      //qDebug() << Q_FUNC_INFO << index << role;
 
@@ -62,7 +63,7 @@ QVariant History::data(const QModelIndex &index, int role) const
              const HistoryItem &item = mData[row];
              switch(role) {
              case ID:
-                 result = item.id;
+                 result = item.ID;
                  break;
              case ResultRole:
                  result = item.result;
@@ -80,14 +81,14 @@ QVariant History::data(const QModelIndex &index, int role) const
      return result;
 }
 
-QVariantMap History::get(const int id)
+QVariantMap History::get(const int ID)
 {
-    return (QVariantMap) mData[findElementIndexById(id)];
+    return (QVariantMap) mData[findElementIndexByID(ID)];
 }
 
-void History::set(const int id, const QVariantMap &v)
+void History::set(const int ID, const QVariantMap &v)
 {
-    HistoryItem &item = mData[findElementIndexById(id)];
+    HistoryItem &item = mData[findElementIndexByID(ID)];
     item = v;
     mDataChanged = true;
 }
@@ -98,7 +99,7 @@ void History::add(const QVariantMap &v)
     HistoryItem item;
     beginInsertRows(QModelIndex(), mData.count(), mData.count());
     item = v;
-    item.id = mNextID;
+    item.ID = mNextID;
         mNextID++;
 
     mData.append(item);
@@ -106,10 +107,10 @@ void History::add(const QVariantMap &v)
     mDataChanged = true;
 }
 
-void History::remove(const int id)
+void History::remove(const int ID)
 {
     qDebug("Remove row");
-    int index = findElementIndexById(id);
+    int index = findElementIndexByID(ID);
     beginRemoveRows(QModelIndex(),index, index);
     mData.removeAt(index);
     endRemoveRows();
@@ -126,11 +127,11 @@ void History::clear()
     mDataChanged = true;
 }
 
-int History::findElementIndexById(const int id) const
+int History::findElementIndexByID(const int ID) const
 {
     int index = -1;
     for(int i=0; i<mData.count();++i){
-        if(mData[i].id == id){
+        if(mData[i].ID == ID){
             index = i;
             break;
         }
@@ -155,9 +156,9 @@ void HistoryFilter::setFilterDate(QString date)
 
 bool HistoryFilter::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
-    QString date = sourceModel()->data(index, History::DateRole).toString();
-    QString tags = sourceModel()->data(index, History::TagsRole).toString();
+//    QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
+//    QString date = sourceModel()->data(index, History::DateRole).toString();
+//    QString tags = sourceModel()->data(index, History::TagsRole).toString();
 
-    return (date.contains(mDate))&&(tags.contains(filterRegExp()));
+    return true;//(date.contains(mDate))&&(tags.contains(filterRegExp()));
 }

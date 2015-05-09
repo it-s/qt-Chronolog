@@ -7,7 +7,7 @@ import "js/date_formater.js" as DateFormat
 //import "js/history.js" as Script
 
 Page {
-    id: history
+    id: historyView
     fillMode: Image.Tile
 
     source: "Assets/vichy.png"
@@ -19,7 +19,7 @@ Page {
     Text{
         color: "#888"
         smooth: true
-        font.pixelSize: U.px(32)
+        font.pixelSize: U.px(32) || 32
         font.family: "sans"
         text: "History is empty"
         anchors.top: parent.top
@@ -31,21 +31,18 @@ Page {
 
     ListView {
         id: historyList
+        anchors.bottom: toolbar.top
+        anchors.right: parent.right
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.bottomMargin: -70
         clip: true
-        anchors.bottomMargin: U.px(140)
-        anchors.fill: parent
         model: history
-        delegate: HistoryListItem {
-            itemID: id
-            date: DateFormat.getDateAsStackedCalendar(date,true)
-            result: DateFormat.formatTimeStringAsDigitalNotation(result)
-            tags: tags
-        }
+        delegate: HistoryListItem {}
 
         section.property: "date"
-        section.delegate: HistoryListHeading{
-            field1: DateFormat.getDateAsLocalsString(section)
-        }
+        section.criteria: ViewSection.CurrentLabelAtStart
+        section.delegate: HistoryListHeading{}
 
     }
 
@@ -80,7 +77,7 @@ Page {
         title: qsTr("Chronolog")
         text: qsTr("Do you want to clear your history, erasing all your saved records?")
         standardButtons: StandardButton.Cancel | StandardButton.Ok
-        onAccepted: history.clar()
+        onAccepted: history.clear()
     }
 
 }

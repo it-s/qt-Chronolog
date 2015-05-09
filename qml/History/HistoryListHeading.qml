@@ -5,9 +5,6 @@ Rectangle {
     height: U.px(80)
     color: "#cfcfcf"
 
-    property string sectionName: ""
-    property alias field1: datePart.text
-
     Text{
         id: datePart
         color: "#888"
@@ -17,5 +14,6 @@ Rectangle {
         font.family: "sans"
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
+        text: section
     }
 }
