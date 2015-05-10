@@ -3,7 +3,6 @@ TEMPLATE = app
 QT += sql qml quick multimedia
 
 SOURCES += main.cpp \
-    database.cpp \
     unit.cpp \
     history.cpp
 
@@ -16,7 +15,6 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    database.h \
     unit.h \
     history.h
 
